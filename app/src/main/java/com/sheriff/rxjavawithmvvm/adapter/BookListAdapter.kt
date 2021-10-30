@@ -1,5 +1,6 @@
 package com.sheriff.rxjavawithmvvm.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.textview.MaterialTextView
 import com.sheriff.rxjavawithmvvm.R
-import com.sheriff.rxjavawithmvvm.network.BookListModel
 import com.sheriff.rxjavawithmvvm.network.VolumeInfo
 
-class BookListAdapter() : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
+class BookListAdapter(val context: Context) : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
 
     var bookListData = ArrayList<VolumeInfo>()
 
@@ -33,8 +33,8 @@ class BookListAdapter() : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
         holder.tvTitle.text = bookListData[position].volumeInfo.title
         holder.tvPublisher.text = bookListData[position].volumeInfo.publisher
         holder.tvDescription.text = bookListData[position].volumeInfo.description
-        val URL = bookListData[position].volumeInfo.imageLinks
-        Glide.with(holder.imgBookThumbnail)
+        val URL = bookListData[position].volumeInfo.imageLinks.smallThumbnail
+        Glide.with(context)
             .load(URL)
             .circleCrop()
             .into(holder.imgBookThumbnail)

@@ -62,7 +62,7 @@ class BookListActivity : AppCompatActivity() {
             val linearLayoutManager = LinearLayoutManager(this@BookListActivity)
             val decoration = DividerItemDecoration(applicationContext, VERTICAL)
             addItemDecoration(decoration)
-            bookListAdapter = BookListAdapter()
+            bookListAdapter = BookListAdapter(this@BookListActivity)
             layoutManager = linearLayoutManager
             adapter = bookListAdapter
         }
